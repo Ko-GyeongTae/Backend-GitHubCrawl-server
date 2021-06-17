@@ -1,13 +1,39 @@
 import request from "request";
 import { Send } from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-export const crawl = (callback: Send) => {
-    request.get('https://github.com/Ko-GyeongTae?tab=repositories&q=&type=public&language=&sort=name', (err, res) => {
-        if (err) callback('');
-        console.log(res.body);
-        callback(res.body);
-    });
+var headers = {
+    "Authorization": process.env.TOKEN,
+    "User-Agent": "PostmanRuntime/7.28.0"
+}
+var Alloptions = {
+    url : 'https://api.github.com/users/Ko-GyeongTae/repos',
+    method:'GET',
+    headers: headers,
 };
+
+var Profileoptions = {
+    url : 'https://api.github.com/users/Ko-GyeongTae',
+    method:'GET',
+    headers: headers,
+}
+
+export const crawl = ():void => {
+    request(Alloptions, (err, res, body) => {
+       if(err) console.log(err);
+       console.log(JSON.parse(body));
+       return body;
+    })
+};
+
+export const profile = ():void => {
+    request(Profileoptions, (err, res, body) => {
+        if(err) console.log(err);
+        console.log(JSON.parse(body));
+    })
+}
+
 
 /*
 export const crawl = () => {
