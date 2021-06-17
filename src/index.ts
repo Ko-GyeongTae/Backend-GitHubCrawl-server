@@ -3,11 +3,11 @@ import { crawl, profile } from './lib/crawl';
 
 const app = express();
 app.get('/list', async (req, res) => {
-    return crawl();
+    crawl(res);
 });
 
 app.get('/profile', async (req, res) => {
-    return profile();
+    profile(res);
 })
 
 app.listen(5010, () => {

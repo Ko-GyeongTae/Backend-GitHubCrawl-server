@@ -19,18 +19,19 @@ var Profileoptions = {
     headers: headers,
 }
 
-export const crawl = ():void => {
+export const crawl = (resp):void => {
     request(Alloptions, (err, res, body) => {
        if(err) console.log(err);
        console.log(JSON.parse(body));
-       return body;
+       resp.send(JSON.parse(body));
     })
 };
 
-export const profile = ():void => {
+export const profile = (resp):void => {
     request(Profileoptions, (err, res, body) => {
         if(err) console.log(err);
         console.log(JSON.parse(body));
+        resp.send(JSON.parse(body));
     })
 }
 
