@@ -1,5 +1,4 @@
 import request from "request";
-import { Send } from 'express';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -19,19 +18,25 @@ var Profileoptions = {
     headers: headers,
 }
 
+//'https://api.github.com/orgs/OS-2021/repos'
+
 export const crawl = (resp):void => {
     request(Alloptions, (err, res, body) => {
        if(err) console.log(err);
-       console.log(JSON.parse(body));
+       let result = JSON.parse(body)
+       //console.log(JSON.parse(body));
+       result.map(info => {
+           console.log(info.name, info.language);
+       })
        resp.send(JSON.parse(body));
     })
 };
 
-export const profile = (resp):void => {
+export const profile = (resp?):void => {
     request(Profileoptions, (err, res, body) => {
         if(err) console.log(err);
         console.log(JSON.parse(body));
-        resp.send(JSON.parse(body));
+        if (resp) resp.send(JSON.parse(body));
     })
 }
 
