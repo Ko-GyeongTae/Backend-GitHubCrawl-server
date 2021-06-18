@@ -21,6 +21,15 @@ const Profileoptions = {
 }
 
 //'https://api.github.com/orgs/OS-2021/repos'
+export const clear = () => {
+    console.log('Start to clean collections...');
+    Repo.remove(err => {
+        if(err) throw new Error(err);
+    });
+    Profile.remove(err => {
+        if(err) throw new Error(err);
+    })
+}
 
 export const crawl = () => {
     console.log('Start to get repositories...');

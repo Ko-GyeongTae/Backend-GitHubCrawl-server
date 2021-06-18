@@ -1,4 +1,4 @@
-import { crawl, profile } from './lib/crawl';
+import { clear, crawl, profile } from './lib/crawl';
 import schedule from 'node-schedule';
 import mongoose, { Error } from 'mongoose';
 
@@ -16,6 +16,7 @@ schedule.scheduleJob('00 * * * * *', async () => {
             console.log("Connect to Database");
         });
         try {
+            await clear();
             await profile();
             await crawl();
         } catch (e) {
