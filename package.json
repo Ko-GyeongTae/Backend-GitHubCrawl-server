@@ -18,7 +18,8 @@
   },
   "scripts": {
     "start": "tsc && node dist",
-    "dev": "nodemon --exec 'ts-node' src/"
+    "dev": "nodemon --exec 'ts-node' src/",
+    "deploy": "pm2 start yarn --interpreter bash --name GithubCrawl-Blog-Server -- start"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
