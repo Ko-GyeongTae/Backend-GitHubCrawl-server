@@ -8,6 +8,6 @@ const repoSchema = new Schema({
     description: { type: String },
     created_at: { type: String },
     clone_url: { type: String },
-    language: { type: String, nullable: true }, 
+    language: { type: String, required: false }, 
 });
 export default mongoose.model('repo', repoSchema);
