@@ -1,5 +1,7 @@
 import request from "request";
 import * as dotenv from 'dotenv';
+import Profile from '../model/Profile';
+import Repo from '../model/Repo';
 dotenv.config();
 
 const headers = {
@@ -20,16 +22,17 @@ const Profileoptions = {
 
 //'https://api.github.com/orgs/OS-2021/repos'
 
-export const crawl = (resp?):any => {
+export const crawl = () => {
     request(Alloptions, (err, res, body) => {
        if(err) console.log(err);
        let result = JSON.parse(body);
-       //console.log(JSON.parse(body));
        result.map(info => {
-           console.log(info.name, info.language);
+           const repo = new Repo(info)
+           repo.save(err => {
+               if(err) console.log(err);
+               else console.log(repo);
+           });
        })
-       if(resp) resp.send(JSON.parse(body));
-       return result
     })
 };
 

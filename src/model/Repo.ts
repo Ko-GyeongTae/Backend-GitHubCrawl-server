@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 const Schema = mongoose.Schema;
 
 const repoSchema = new Schema({
@@ -10,4 +10,14 @@ const repoSchema = new Schema({
     clone_url: { type: String },
     language: { type: String, required: false }, 
 });
-export default mongoose.model('repo', repoSchema);
+
+export interface RepoInterface extends Document {
+    id: Number;
+    name: String;
+    html_url: String;
+    description: String;
+    created_at: String;
+    clone_url: String;
+    language: String; 
+}
+export default mongoose.model<RepoInterface>('repo', repoSchema);
