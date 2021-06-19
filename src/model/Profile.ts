@@ -9,6 +9,7 @@ const profileSchema = new Schema({
     name: { type: String },
     company: { type: String },
     location: { type: String },
+    email: { type: String },
     bio: { type: String },
     created_at: { type: Date },
     updated_at: { type: Date}
