@@ -9,7 +9,7 @@ const repoSchema = new Schema({
     created_at: { type: String },
     clone_url: { type: String },
     language: { type: String, required: false }, 
-    categort: { type: String },
+    category: { type: String },
 });
 
 export interface RepoInterface extends Document {
