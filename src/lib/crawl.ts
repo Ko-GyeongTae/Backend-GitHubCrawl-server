@@ -32,12 +32,15 @@ export const clear = () => {
 }
 
 export const crawl = () => {
+    let buffer;
     console.log('Start to get repositories...');
     request(Alloptions, (err, res, body) => {
         if (err) console.log(err);
         let result = JSON.parse(body);
         result.map(info => {
-            const repo = new Repo(info);
+            buffer = info;
+            buffer.category = info.name.slice('-')[0];
+            const repo = new Repo(buffer);
             repo.save(err => {
                 if (err) console.error(err);
                 else console.log(repo.name);
