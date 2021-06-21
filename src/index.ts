@@ -9,7 +9,7 @@ const mongoConfig = {
 };
 
 console.log('Start to run crawler...');
-schedule.scheduleJob('00 * * * * *', async () => {
+schedule.scheduleJob('30 * * * * *', async () => {
     console.log("crwalStart");
     try {
         await mongoose.connect(process.env.MONGO, mongoConfig, () => {
