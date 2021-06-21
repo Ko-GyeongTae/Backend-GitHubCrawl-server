@@ -9,6 +9,7 @@ const repoSchema = new Schema({
     created_at: { type: String },
     clone_url: { type: String },
     language: { type: String, required: false }, 
+    categort: { type: String },
 });
 
 export interface RepoInterface extends Document {
@@ -19,5 +20,6 @@ export interface RepoInterface extends Document {
     created_at: String;
     clone_url: String;
     language: String; 
+    category: String;
 }
 export default mongoose.model<RepoInterface>('repo', repoSchema);
