@@ -18,7 +18,9 @@ schedule.scheduleJob('30 * * * * *', async () => {
         try {
             await clear();
             await profile();
-            await crawl();
+            for(let i = 1; i <= 2; i++){
+                await crawl(i);
+            }
         } catch (e) {
             throw new Error(e);
         }

@@ -8,8 +8,8 @@ const headers = {
     "Authorization": process.env.TOKEN,
     "User-Agent": "PostmanRuntime/7.28.0"
 }
-const Alloptions = {
-    url: 'https://api.github.com/users/Ko-GyeongTae/repos',
+let Alloptions = {
+    url: 'https://api.github.com/users/Ko-GyeongTae/repos?page=',
     method: 'GET',
     headers: headers,
 };
@@ -31,13 +31,17 @@ export const clear = () => {
     })
 }
 
-export const crawl = () => {
+export const crawl = (args: number) => {
     let buffer;
+    Alloptions.url = 'https://api.github.com/users/Ko-GyeongTae/repos?page=';
+    Alloptions.url = Alloptions.url + `${args}`;
+    console.log(Alloptions.url)
     console.log('Start to get repositories...');
     request(Alloptions, (err, res, body) => {
         if (err) console.log(err);
         let result = JSON.parse(body);
         result.map(info => {
+            console.log(info.name);
             buffer = info;
             buffer.category = info.name.slice('-')[0];
             const repo = new Repo(buffer);
